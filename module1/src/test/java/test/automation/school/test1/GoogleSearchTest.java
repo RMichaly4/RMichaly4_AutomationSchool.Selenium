@@ -21,7 +21,7 @@ public class GoogleSearchTest {
     @BeforeMethod ()
     public void setup () {
         System.setProperty ("webdriver.gecko.driver", "../drivers/geckodriver-v0.19.0-win64/geckodriver.exe");
-        //System.setProperty("webdriver.firefox.bin", "C:\\Program Files\\Mozilla Firefox\\firefox.exe");
+        System.setProperty ("webdriver.firefox.bin", "C:\\Program Files\\Mozilla Firefox\\firefox.exe");
 
         driver = new FirefoxDriver();
         driver.get("http://www.google.com");

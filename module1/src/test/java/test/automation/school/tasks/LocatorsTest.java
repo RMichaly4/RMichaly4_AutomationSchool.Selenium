@@ -1,12 +1,18 @@
 package test.automation.school.tasks;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.*;
+
+import static org.testng.Assert.assertTrue;
 
 
 public class LocatorsTest {
@@ -14,7 +20,7 @@ public class LocatorsTest {
 
     @BeforeClass
     public void setUp() throws Exception {
-        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver-v2.30-win32/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "../drivers/chromedriver-v2.30-win32/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://automationpractice.com/index.php");
     }
@@ -28,7 +34,8 @@ public class LocatorsTest {
     public void locateElementByIdTest() throws Exception {
         //TODO 1 - locate search input field by ID and assign to a variable named elementById
 
-        //TODO 1
+        WebElement elementById = driver.findElement(By.id("search_query_top"));
+        assertTrue (elementById.isDisplayed());
     }
 
 
@@ -36,7 +43,9 @@ public class LocatorsTest {
     public void locateElementByClassNameTest() throws Exception {
         //TODO 2 - locate all products by class name and put them into ArrayList Collection
 
-        //TODO 2
+        List<WebElement> ElementByClassNameTestList = driver.findElements(By.className("ajax_block_product"));
+        //assertTrue (list.size()>0);
+        assertTrue (ElementByClassNameTestList.get(0).isDisplayed());
     }
 
 
@@ -44,7 +53,8 @@ public class LocatorsTest {
     public void locateElementByTagNameTest() throws Exception {
         //TODO 3 - locate all images by tag name and put them into ArrayList Collection
 
-        //TODO 3
+        List<WebElement> ElementByTagNameTestList = driver.findElements(By.tagName("img"));
+        assertTrue (ElementByTagNameTestList.get(0).isDisplayed());
     }
 
 
@@ -52,7 +62,8 @@ public class LocatorsTest {
     public void locateElementByNameTest() throws Exception {
         //TODO 4 - locate newsletter subscription input element by name
 
-        //TODO 4
+        WebElement elementByName = driver.findElement(By.name("email"));
+        assertTrue (elementByName.isDisplayed());
     }
 
 
@@ -61,7 +72,8 @@ public class LocatorsTest {
         //TODO 5 - locate "T-Shirts" element by link text
         // NOTE - linkText() is case sensitive
 
-        //TODO 5
+        WebElement elementByLinkText = driver.findElement(By.linkText("T-SHIRTS"));
+        assertTrue (elementByLinkText.isDisplayed());
     }
 
 
@@ -69,7 +81,8 @@ public class LocatorsTest {
     public void locateElementByCssSelctorTest() throws Exception {
         //TODO 6 - locate all visible products element by CSS and put them into ArrayList Collection
 
-        //TODO 6
+        List<WebElement> ElementByCssSelctorTestList = driver.findElements(By.cssSelector(".active .ajax_block_product"));
+        assertTrue (ElementByCssSelctorTestList.get(0).isDisplayed());
 
     }
 
@@ -79,7 +92,9 @@ public class LocatorsTest {
         //NOTE - you have to indicate all class names that are specified on the current element
         // This is contrary to CSS Selector where you can specify just one of the class names
 
-        //TODO 7
+        List<WebElement> ElementByXPathTestList = driver.findElements(By.xpath("//*[contains(@class,'active')]/*[contains(@class,'ajax_block_product')]"));
+        assertTrue (ElementByXPathTestList.get(0).isDisplayed());
+        System.out.println("ElementByXPathTestList size: " + ElementByXPathTestList.size());
     }
 
 }
